@@ -4,7 +4,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { enhanceImage } from "@/lib/huggingface";
 
-type EnhanceRequestBody = {
+type OptifAIequestBody = {
   imageUrl?: string;
 };
 
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const body = (await request.json()) as EnhanceRequestBody;
+    const body = (await request.json()) as OptifAIequestBody;
     const imageUrl = body.imageUrl;
 
     if (!imageUrl || typeof imageUrl !== "string") {

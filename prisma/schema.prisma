@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model EnhancedImage {
+  id               String   @id @default(uuid())
+  userId           String   // This links the image to the Clerk user
+  originalImageUrl String?  
+  enhancedImageUrl String   // The Vercel Blob URL
+  createdAt        DateTime @default(now())
+}
