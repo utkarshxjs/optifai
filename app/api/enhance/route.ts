@@ -45,17 +45,17 @@ export async function POST(request: Request) {
       );
     }
 
-    const enhancedBlob = await enhanceImage(imageUrl);
-    const arrayBuffer = await enhancedBlob.arrayBuffer();
-    const base64Image = Buffer.from(arrayBuffer).toString("base64");
+    const enhancedBuffer = await enhanceImage(imageUrl);
+const base64Image = enhancedBuffer.toString("base64");
 
     return NextResponse.json(
       {
         imageBase64: base64Image,
-        mimeType: enhancedBlob.type || "application/octet-stream",
+        mimeType: "image/jpeg", // We just hardcode the image type here
       },
       { status: 200 },
     );
+    
   } catch (error) {
     console.error("Failed to enhance image:", error);
     return NextResponse.json(
