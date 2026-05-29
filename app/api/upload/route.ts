@@ -16,9 +16,10 @@ export async function POST(request: Request) {
     }
 
     // 2. Upload Original to Vercel Blob
-    const originalBlob = await put(`original-${file.name}`, file, {
-      access: 'public',
-    });
+   const originalBlob = await put(`original-${file.name}`, file, {
+  access: 'public',
+  addRandomSuffix: true, // <--- Add this line!
+});
 
     // 3. Process with Hugging Face Engine
     const enhancedBuffer = await enhanceImage(originalBlob.url);
